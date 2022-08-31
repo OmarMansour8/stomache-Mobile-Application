@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "772536170811",
+    "project_id": "stomache-51506",
+    "storage_bucket": "stomache-51506.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772536170811:android:469edb11d3d18790839f1e",
+        "android_client_info": {
+          "package_name": "androidatc.com.stomache"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772536170811-2mat9j4cgit79ul5uagm1kecfbse3s89.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtjYdDFFdEpJpYdokbKNsUwQJx7WwHJm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772536170811-2mat9j4cgit79ul5uagm1kecfbse3s89.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "772536170811-ru306am7tep31jdeo951fv308jqavuqr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "androidatc.com.stomache"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
