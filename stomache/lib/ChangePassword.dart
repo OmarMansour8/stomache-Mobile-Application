@@ -65,6 +65,9 @@ final newPasswordContoller =TextEditingController();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$error'),backgroundColor: Colors.black26,));
     }
   }
+  disableButton(){
+    buttonEnabled = false;
+  }
   void dispose(){
     newPasswordContoller.dispose();
     super.dispose();
@@ -189,6 +192,7 @@ final newPasswordContoller =TextEditingController();
                                 enableButton();
                                 return "";}
                               else{
+                                disableButton();
                                 return "Old password must be correct and\nnew password must match in both fields ";}
                             })(),style: TextStyle(color: Colors.redAccent),),
                           ]),

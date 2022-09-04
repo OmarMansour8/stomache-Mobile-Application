@@ -18,6 +18,7 @@ class _Sign_UpState extends State<Sign_Up> {
   String dateOfBirth = '';
   double totalAmount = 0;
   List<String> orders=[];
+  bool buttonEnabled = false;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   List<Widget> cart=[];
@@ -30,6 +31,13 @@ class _Sign_UpState extends State<Sign_Up> {
       setState((){
         date1=picked;
         print(date1.toString());});}}
+  enableButton(){
+    buttonEnabled = true;
+  }
+
+  disableButton(){
+    buttonEnabled = false;
+  }
   @override
   Widget build(BuildContext context) {
     dateOfBirth='${date1.year} - ${date1.month} - ${date1.day}'.toString();
@@ -73,7 +81,9 @@ class _Sign_UpState extends State<Sign_Up> {
                             prefixIcon:Icon(Icons.account_circle_rounded,color: Colors.deepOrangeAccent,)
                         ),
                         onChanged: (String value){
-                          fullName = value;
+                          setState(() {
+                            fullName = value;
+                          });
                         },
                       ),
                     ),
@@ -98,7 +108,9 @@ class _Sign_UpState extends State<Sign_Up> {
                             prefixIcon:Icon(Icons.alternate_email_outlined,color: Colors.deepOrangeAccent)
                         ),
                         onChanged: (String value){
-                          Email = value;
+                          setState(() {
+                            Email = value;
+                          });
                         },
                       ),
                     ),
@@ -123,7 +135,10 @@ class _Sign_UpState extends State<Sign_Up> {
                             prefixIcon:Icon(Icons.phone,color: Colors.deepOrangeAccent)
                         ),
                         onChanged: (String value){
-                          mobileNumber = value;
+
+                          setState(() {
+                            mobileNumber = value;
+                          });
                         },
                       ),
                     ),
@@ -153,7 +168,10 @@ class _Sign_UpState extends State<Sign_Up> {
                             prefixIcon:Icon(Icons.password,color: Colors.deepOrangeAccent)
                         ),
                         onChanged: (String value){
-                          Password = value;
+                          setState(() {
+                            Password = value;
+
+                          });
                         },
                       ),
                     ),
@@ -195,6 +213,14 @@ class _Sign_UpState extends State<Sign_Up> {
                         )
                       ],
                     ),
+                    Text((() {
+                      if(fullName!=''&&Email!=''&&mobileNumber!=''&&Password!=''&&gender!=''&&mobileNumber.length==11){
+                        enableButton();
+                        return "";}
+                      else{
+                        disableButton();
+                        return "Please fill all fields , make sure your mobile number is 11 digits";}
+                    })(),style: TextStyle(color: Colors.redAccent),),
                     Container(
                         margin: EdgeInsets.symmetric(vertical: 12),
                         width: size.width*0.9,
@@ -202,7 +228,7 @@ class _Sign_UpState extends State<Sign_Up> {
                           borderRadius: BorderRadius.circular(29),
                           child:SizedBox(height: 60, child:  ElevatedButton(
                              style: ElevatedButton.styleFrom(primary: Colors.deepOrangeAccent),
-                              onPressed: ()async{
+                              onPressed:buttonEnabled ? ()async{
                                 try{
                                   final newUser = await _auth.createUserWithEmailAndPassword(email: Email, password: Password).catchError((err){
                                     showDialog(
@@ -248,7 +274,7 @@ class _Sign_UpState extends State<Sign_Up> {
 
                                   print(e);
                                 }
-                              }, child:Text('Sign Up',style: TextStyle(color: Colors.white,fontSize: 19),))),)),
+                              }:null, child:Text('Sign Up',style: TextStyle(color: Colors.white,fontSize: 19),))),)),
                     TextButton(
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>Sign_In()));
