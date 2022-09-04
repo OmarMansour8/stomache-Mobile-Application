@@ -1,8 +1,6 @@
-import 'dart:math';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
-import 'package:stomache/order.dart';
 
 
 class ChickenRanchPizza extends StatefulWidget {
@@ -154,7 +152,6 @@ class _ChickenRanchPizzaState extends State<ChickenRanchPizza> {
           ],
         ));
     totalAmount+=(price*quantity);
-    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
     orders.add('$name X $quantity');
   }
   @override

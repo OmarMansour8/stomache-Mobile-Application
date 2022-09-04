@@ -4,7 +4,6 @@ import 'package:stomache/CreamyEggs.dart';
 import 'package:stomache/FrenchToast.dart';
 import 'package:stomache/FruityPancake.dart';
 import 'package:stomache/Vegan_Breakfast.dart';
-//import 'package:webview_flutter/webview_flutter.dart';
 import 'main.dart';
 
 class breakfast extends StatefulWidget {

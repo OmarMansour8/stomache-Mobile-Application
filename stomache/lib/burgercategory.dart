@@ -4,8 +4,6 @@ import 'package:stomache/Fire_Burger.dart';
 import 'package:stomache/GrandFamilyBox.dart';
 import 'package:stomache/Jucy_Burger.dart';
 import 'package:stomache/OmahaBurger.dart';
-import 'package:stomache/CheesyPizza.dart';
-//import 'package:webview_flutter/webview_flutter.dart';
 import 'main.dart';
 
 class burger extends StatefulWidget {
