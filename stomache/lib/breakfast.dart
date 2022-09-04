@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:stomache/BegalWithCreamCheese.dart';
+import 'package:stomache/CreamyBegal.dart';
 import 'package:stomache/CreamyEggs.dart';
 import 'package:stomache/FrenchToast.dart';
 import 'package:stomache/FruityPancake.dart';
+import 'package:stomache/Vegan_Breakfast.dart';
 //import 'package:webview_flutter/webview_flutter.dart';
 import 'main.dart';
 
@@ -17,6 +18,8 @@ class breakfast extends StatefulWidget {
   List<Widget> cart = [];
   String name ='Juicy Burger';
   String image = "images/image4.jpeg";
+  double totalAmount = 0;
+  List<String> orders=[];
 
   breakfast(
       {required this.Email,
@@ -25,10 +28,11 @@ class breakfast extends StatefulWidget {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart
+        ,required this.totalAmount,required this.orders});
 
   @override
-  State<breakfast> createState() => _breakfastState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart);
+  State<breakfast> createState() => _breakfastState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
 class _breakfastState extends State<breakfast> {
@@ -44,7 +48,8 @@ class _breakfastState extends State<breakfast> {
   List<Widget> cart = [];
   String name ='Juicy Burger';
   String image = "images/image4.jpeg";
-
+  double totalAmount = 0;
+  List<String> orders=[];
   _breakfastState(
       {required this.Email,
         required this.Password,
@@ -52,11 +57,13 @@ class _breakfastState extends State<breakfast> {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart
+        ,required this.totalAmount,required this.orders});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    print(orders.length);
     return
 
 
@@ -68,7 +75,9 @@ class _breakfastState extends State<breakfast> {
 
           ///////////Vegan-Breakfast/////////////
 
+          SizedBox(width: 12,),
           Container(
+
             width: 180,
             height: 190,
             padding: EdgeInsets.only(top: 20),
@@ -85,7 +94,9 @@ class _breakfastState extends State<breakfast> {
 
                   contentPadding: EdgeInsets.only(left: 20,top: 108,right: 18),
                   trailing: Icon(Icons.add_shopping_cart),
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>VeganBreakfast(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
+                  },
                   iconColor: Colors.deepOrange,
 
                   title: Text("Vegan Breakfast",style: TextStyle(fontSize: 14)),
@@ -131,7 +142,7 @@ class _breakfastState extends State<breakfast> {
                   contentPadding: EdgeInsets.only(left: 20,top: 108,right: 18),
                   trailing: Icon(Icons.add_shopping_cart),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>FruityPancake(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>FruityPancake(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                   },
                   iconColor: Colors.deepOrange,
 
@@ -163,6 +174,7 @@ class _breakfastState extends State<breakfast> {
 
 
         Row(children:<Widget>[
+          SizedBox(width: 12,),
           Container(
             width: 370,
             height: 250,
@@ -181,7 +193,7 @@ class _breakfastState extends State<breakfast> {
                   contentPadding: EdgeInsets.only(left: 20,top: 174,right: 18),
                   trailing: Icon(Icons.add_shopping_cart),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>FrenchToast(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>FrenchToast(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                   },
                   iconColor: Colors.deepOrange,
 
@@ -218,7 +230,7 @@ class _breakfastState extends State<breakfast> {
         Row(children:<Widget> [
 
           ///////////Bagel with Cream Cheese/////////////
-
+          SizedBox(width: 12,),
           Container(
             width: 180,
             height: 190,
@@ -237,11 +249,11 @@ class _breakfastState extends State<breakfast> {
                   contentPadding: EdgeInsets.only(left: 20,top: 108,right: 18),
                   trailing: Icon(Icons.add_shopping_cart),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>BegalWithCreamCheese(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>CreamyBegal(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                   },
                   iconColor: Colors.deepOrange,
 
-                  title: Text("Bagel with Cream Cheese",style: TextStyle(fontSize: 14)),
+                  title: Text("Creamy Begal",style: TextStyle(fontSize: 14)),
 
 
                 ),
@@ -284,7 +296,7 @@ class _breakfastState extends State<breakfast> {
                   contentPadding: EdgeInsets.only(left: 20,top: 108,right: 18),
                   trailing: Icon(Icons.add_shopping_cart),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>CreamyEggs(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>CreamyEggs(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                   },
                   iconColor: Colors.deepOrange,
 

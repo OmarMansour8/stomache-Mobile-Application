@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stomache/BurgerWithFetaCream.dart';
+import 'package:stomache/FetaCreamBurger.dart';
 import 'package:stomache/Fire_Burger.dart';
 import 'package:stomache/GrandFamilyBox.dart';
 import 'package:stomache/Jucy_Burger.dart';
@@ -17,6 +17,8 @@ class burger extends StatefulWidget {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
+  double totalAmount = 0;
+  List<String> orders=[];
 
   burger(
       {required this.Email,
@@ -25,10 +27,11 @@ class burger extends StatefulWidget {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart,
+  required this.totalAmount,required this.orders});
 
   @override
-  State<burger> createState() => _burgerState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart);
+  State<burger> createState() => _burgerState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
 class _burgerState extends State<burger> {
@@ -42,6 +45,8 @@ class _burgerState extends State<burger> {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
+  double totalAmount = 0;
+  List<String> orders=[];
 
   _burgerState(
       {required this.Email,
@@ -50,16 +55,18 @@ class _burgerState extends State<burger> {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart,required this.totalAmount,required this.orders});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    print(orders.length);
     return
 
 
       Column(children:<Widget> [
 
         Row(children:<Widget> [
+          SizedBox(width: 10,),
           Container(
             width: 375,
             height: 280,
@@ -78,7 +85,7 @@ class _burgerState extends State<burger> {
                   contentPadding: EdgeInsets.only(left: 20,top: 200,right: 18),
                   trailing: Icon(Icons.add_shopping_cart),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>GrandFamilyBox(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>GrandFamilyBox(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                   },
                   iconColor: Colors.deepOrange,
 
@@ -111,7 +118,7 @@ class _burgerState extends State<burger> {
 
         Row(children:<Widget> [
           ///////////Cheesy Burger/////////////
-
+          SizedBox(width: 10,),
           Container(
             width: 180,
             height: 190,
@@ -130,7 +137,7 @@ class _burgerState extends State<burger> {
                   contentPadding: EdgeInsets.only(left: 20,top: 108,right: 18),
                   trailing: Icon(Icons.add_shopping_cart),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>JucyBurger(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>JucyBurger(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                   },
                   iconColor: Colors.deepOrange,
 
@@ -177,7 +184,7 @@ class _burgerState extends State<burger> {
                   contentPadding: EdgeInsets.only(left: 20,top: 108,right: 18),
                   trailing: Icon(Icons.add_shopping_cart),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>FireBurger(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>FireBurger(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                   },
                   iconColor: Colors.deepOrange,
 
@@ -221,8 +228,7 @@ class _burgerState extends State<burger> {
 
         Row(children:<Widget> [
 
-          ///////////Bagel with Cream Cheese/////////////
-
+          SizedBox(width: 10,),
           Container(
             width: 180,
             height: 190,
@@ -241,13 +247,13 @@ class _burgerState extends State<burger> {
                   contentPadding: EdgeInsets.only(left: 20,top: 108,right: 18),
                   trailing: Icon(Icons.add_shopping_cart),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>BurgerWithCreamFeta(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>BurgerWithCreamFeta(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                   },
                   iconColor: Colors.deepOrange,
 
 
                   title:
-                  Text("Burger with Feta Cream",style: TextStyle(fontSize: 14),),
+                  Text("Feta Cream Burger",style: TextStyle(fontSize: 14),),
 
 
                 ),
@@ -290,7 +296,7 @@ class _burgerState extends State<burger> {
                   contentPadding: EdgeInsets.only(left: 20,top: 108,right: 18),
                   trailing: Icon(Icons.add_shopping_cart),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>OmahaBurger(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>OmahaBurger(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                   },
                   iconColor: Colors.deepOrange,
 

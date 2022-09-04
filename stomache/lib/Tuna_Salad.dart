@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
+import 'package:stomache/order.dart';
 
 
 class TunaSalad extends StatefulWidget {
@@ -14,6 +15,8 @@ class TunaSalad extends StatefulWidget {
   List<Widget> cart = [];
   String name ='Juicy Burger';
   String image = "images/image4.jpeg";
+  double totalAmount = 0;
+  List<String> orders=[];
 
   TunaSalad(
       {required this.Email,
@@ -22,10 +25,11 @@ class TunaSalad extends StatefulWidget {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart
+        ,required this.totalAmount,required this.orders});
 
   @override
-  State<TunaSalad> createState() => _TunaSaladState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart);
+  State<TunaSalad> createState() => _TunaSaladState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
 class _TunaSaladState extends State<TunaSalad> {
@@ -46,8 +50,11 @@ class _TunaSaladState extends State<TunaSalad> {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
-  String name ='Juicy Burger';
-  String image = "images/image4.jpeg";
+  double totalAmount = 0;
+  String name ='Tuna Salad';
+  String image = "images/image3.jpeg";
+  List<String> orders=[];
+  
 
   _TunaSaladState(
       {required this.Email,
@@ -56,7 +63,7 @@ class _TunaSaladState extends State<TunaSalad> {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart,required this.totalAmount,required this.orders});
   ordered(List<Widget> cart){
     cart.add(
         Row(
@@ -112,7 +119,7 @@ class _TunaSaladState extends State<TunaSalad> {
                                 Container(
                                   padding: EdgeInsets.only(
                                       top: 10, left: 30),
-                                  child: Text("Amount: $price",
+                                  child: Text("Amount: ${price * quantity}\$",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.black54)),
@@ -150,6 +157,9 @@ class _TunaSaladState extends State<TunaSalad> {
             ),
           ],
         ));
+    totalAmount+=(price*quantity);
+    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
+    orders.add('$name X $quantity');
   }
   @override
   Widget build(BuildContext context) {
@@ -258,12 +268,12 @@ class _TunaSaladState extends State<TunaSalad> {
                   ),
                   Icon(
                     Icons.star_border_sharp,
-                    size: 10,
+                    size: 10,color: Colors.deepOrangeAccent,
                   ),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
                   SizedBox(
                     width: 3,
                   ),
@@ -408,7 +418,7 @@ class _TunaSaladState extends State<TunaSalad> {
                 ],
               ),
               SizedBox(
-                height: 90,
+                height: 110,
               ),
               Row(
                 children: [
@@ -417,7 +427,7 @@ class _TunaSaladState extends State<TunaSalad> {
                   ),
                   Container(
                     height: 50,
-                    width: 370,
+                    width: 390,
                     decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     child: ElevatedButton(
@@ -439,7 +449,7 @@ class _TunaSaladState extends State<TunaSalad> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
 
                       },
                       style: ElevatedButton.styleFrom(

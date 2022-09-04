@@ -1,8 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stomache/mainMenu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:stomache/singIn.dart';
 class Sign_Up extends StatefulWidget {
   const Sign_Up({Key? key}) : super(key: key);
   @override
@@ -14,7 +16,8 @@ class _Sign_UpState extends State<Sign_Up> {
   String fullName = '';
   String mobileNumber = '';
   String gender='';
-  String dateOfBirth = '';
+  String dateOfBirth = '';double totalAmount = 0;
+  List<String> orders=[];
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   List<Widget> cart=[];
@@ -38,7 +41,7 @@ class _Sign_UpState extends State<Sign_Up> {
                 padding: EdgeInsets.all(20),
                 child: ListView(
                   children: <Widget>[
-                    IconButton(onPressed: (){Navigator.pushNamed(context, '1');}, icon:Icon(Icons.arrow_back_ios),alignment: Alignment.topLeft,),
+                    IconButton(onPressed: (){Navigator.pop(context);}, icon:Icon(Icons.arrow_back_ios),alignment: Alignment.topLeft,),
                     Container(
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
@@ -63,8 +66,11 @@ class _Sign_UpState extends State<Sign_Up> {
                       padding: EdgeInsets.all(1),
                       child: TextField(
                         decoration: InputDecoration(
+                            focusedBorder:UnderlineInputBorder(borderSide: BorderSide(color: Colors.deepOrangeAccent)),
+                            focusColor: Colors.deepOrangeAccent,
+                            labelStyle: TextStyle(color: Colors.deepOrangeAccent),
                             hintText: 'Full Name',
-                            prefixIcon:Icon(Icons.account_circle_rounded)
+                            prefixIcon:Icon(Icons.account_circle_rounded,color: Colors.deepOrangeAccent,)
                         ),
                         onChanged: (String value){
                           fullName = value;
@@ -85,9 +91,11 @@ class _Sign_UpState extends State<Sign_Up> {
                             ),]),
                       padding: EdgeInsets.all(1),
                       child: TextField(
-                        decoration: InputDecoration(
+                        decoration: InputDecoration(focusedBorder:UnderlineInputBorder(borderSide: BorderSide(color: Colors.deepOrangeAccent)),
+                            focusColor: Colors.deepOrangeAccent,
+                            labelStyle: TextStyle(color: Colors.deepOrangeAccent),
                             hintText: 'Email',
-                            prefixIcon:Icon(Icons.alternate_email_outlined)
+                            prefixIcon:Icon(Icons.alternate_email_outlined,color: Colors.deepOrangeAccent)
                         ),
                         onChanged: (String value){
                           Email = value;
@@ -108,8 +116,11 @@ class _Sign_UpState extends State<Sign_Up> {
                       padding: EdgeInsets.all(1),
                       child: TextField(
                         decoration: InputDecoration(
+                            focusedBorder:UnderlineInputBorder(borderSide: BorderSide(color: Colors.deepOrangeAccent)),
+                            focusColor: Colors.deepOrangeAccent,
+                            labelStyle: TextStyle(color: Colors.deepOrangeAccent),
                             hintText: 'Mobile Number',
-                            prefixIcon:Icon(Icons.phone)
+                            prefixIcon:Icon(Icons.phone,color: Colors.deepOrangeAccent)
                         ),
                         onChanged: (String value){
                           mobileNumber = value;
@@ -129,10 +140,17 @@ class _Sign_UpState extends State<Sign_Up> {
                                 offset: Offset(0,2)
                             ),]),
                       padding: EdgeInsets.all(1),
+
                       child: TextField(
+                        obscureText: true,
+                        cursorColor: Colors.deepOrangeAccent,
+
                         decoration: InputDecoration(
+                            focusedBorder:UnderlineInputBorder(borderSide: BorderSide(color: Colors.deepOrangeAccent)),
+                            focusColor: Colors.deepOrangeAccent,
+                            labelStyle: TextStyle(color: Colors.deepOrangeAccent),
                             hintText: 'New Password',
-                            prefixIcon:Icon(Icons.password)
+                            prefixIcon:Icon(Icons.password,color: Colors.deepOrangeAccent)
                         ),
                         onChanged: (String value){
                           Password = value;
@@ -187,7 +205,21 @@ class _Sign_UpState extends State<Sign_Up> {
                               color: Colors.deepOrange,
                               onPressed: ()async{
                                 try{
-                                  final newUser = await _auth.createUserWithEmailAndPassword(email: Email, password: Password);
+                                  final newUser = await _auth.createUserWithEmailAndPassword(email: Email, password: Password).catchError((err){
+                                    showDialog(
+                                      context: context,builder: (BuildContext context){
+                                      return AlertDialog(
+                                        title: Text('error'),
+                                        content: Text(err.message),
+                                        actions: [
+                                          FlatButton(onPressed: (){
+                                            Navigator.pop(context);
+                                          }, child: Text('Ok'))
+                                        ],
+                                      ) ;
+                                    },
+                                    );
+                                  });
                                   if(newUser != null){
                                     print('Account has been successfuly created');
                                     FirebaseFirestore.instance.collection('Users').doc('$Email').set( {
@@ -205,7 +237,7 @@ class _Sign_UpState extends State<Sign_Up> {
                                     print(fullName);
                                     print(mobileNumber);
 
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth,cart: cart)));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
 
 
 
@@ -213,12 +245,14 @@ class _Sign_UpState extends State<Sign_Up> {
 
                                 }
                                 catch(e){
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$e'),backgroundColor: Colors.black26,));
+
                                   print(e);
                                 }
-                              }, child:Text('Sign In',style: TextStyle(color: Colors.white,fontSize: 19),)),)),
+                              }, child:Text('Sign Up',style: TextStyle(color: Colors.white,fontSize: 19),)),)),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '0');
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Sign_In()));
                       },
                       child: const Text('Already have an account?',style: TextStyle(color: Colors.deepOrange,fontSize: 16)),
                     ),

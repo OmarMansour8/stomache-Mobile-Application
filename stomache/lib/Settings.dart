@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:stomache/About.dart';
-import 'package:stomache/ChangeEmail.dart';
 import 'package:stomache/ChangePassword.dart';
 import 'package:stomache/mainMenu.dart';
 import 'package:stomache/pizza_add_to_cart.dart';
@@ -16,6 +15,8 @@ class setting extends StatefulWidget {
   List<Widget> cart = [];
   String name ='Juicy Burger';
   String image = "images/image4.jpeg";
+  double totalAmount = 0;
+  List<String> orders=[];
 
   setting(
       {required this.Email,
@@ -24,9 +25,10 @@ class setting extends StatefulWidget {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart
+        ,required this.totalAmount,required this.orders});
   @override
-  State<setting> createState() => _settingState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart);
+  State<setting> createState() => _settingState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
 class _settingState extends State<setting> {
@@ -40,6 +42,8 @@ class _settingState extends State<setting> {
   String name ='Juicy Burger';
   String image = "images/image4.jpeg";
   bool swVal = false;
+  double totalAmount = 0;
+  List<String> orders=[];
   _settingState(
       {required this.Email,
         required this.Password,
@@ -47,13 +51,9 @@ class _settingState extends State<setting> {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
-  //bool _darkMode=false;
-  void _onChange(bool val) {
-    setState(() {
-      swVal = val;
-    });
-  }
+        required this.cart
+        ,required this.totalAmount,required this.orders});
+
 
   ThemeData _liteTheme = ThemeData(
     brightness: Brightness.light,
@@ -66,7 +66,7 @@ class _settingState extends State<setting> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: swVal ? _darkTheme : _liteTheme,
+
         home: Scaffold(
             body: SafeArea(
                 child: ListView(padding: EdgeInsets.all(20), children: [
@@ -75,13 +75,7 @@ class _settingState extends State<setting> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => homePage(
-                          Email: Email,
-                          Password: Password,
-                          fullName: fullName,
-                          mobileNumber: mobileNumber,
-                          gender: gender,
-                          dateOfBirth: dateOfBirth,cart: cart)));
+                      builder: (context) => homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
             },
             icon: Icon(Icons.arrow_back_ios),
             alignment: Alignment.topLeft,
@@ -97,15 +91,7 @@ class _settingState extends State<setting> {
                     fontSize: 20),
               )),
           SizedBox(height: 30, width: 30),
-          ListTile(
-            title: Text('Dark mode'),
-            subtitle: Text(''),
-            leading: Icon(Icons.dark_mode),
-            trailing: Switch(
-                value: (swVal),
-                onChanged: _onChange,
-                activeColor: Colors.deepOrange),
-          ),
+
           SizedBox(height: 10, width: 10),
           // ListTile(
           //     title:Text('Change Email'),
@@ -124,7 +110,7 @@ class _settingState extends State<setting> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Change_Password(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                        builder: (context) => Change_Password(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
               }),
           SizedBox(height: 10, width: 10),
           ListTile(

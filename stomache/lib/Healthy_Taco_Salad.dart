@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
+import 'package:stomache/order.dart';
 
 
 
@@ -15,6 +16,8 @@ class HealthyTacoSalad extends StatefulWidget {
   List<Widget> cart = [];
   String name ='Juicy Burger';
   String image = "images/image4.jpeg";
+  double totalAmount = 0;
+  List<String> orders=[];
 
   HealthyTacoSalad(
       {required this.Email,
@@ -23,10 +26,11 @@ class HealthyTacoSalad extends StatefulWidget {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart
+        ,required this.totalAmount,required this.orders});
 
   @override
-  State<HealthyTacoSalad> createState() => _HealthyTacoSaladState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart);
+  State<HealthyTacoSalad> createState() => _HealthyTacoSaladState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
 class _HealthyTacoSaladState extends State<HealthyTacoSalad> {
@@ -47,8 +51,10 @@ class _HealthyTacoSaladState extends State<HealthyTacoSalad> {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
-  String name ='Juicy Burger';
-  String image = "images/image4.jpeg";
+  String name ='Healthy Taco Salad';
+  String image = "images/image2.jpeg";
+  double totalAmount = 0;
+  List<String> orders=[];
 
   _HealthyTacoSaladState(
       {required this.Email,
@@ -57,7 +63,8 @@ class _HealthyTacoSaladState extends State<HealthyTacoSalad> {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart
+        ,required this.totalAmount,required this.orders});
   ordered(List<Widget> cart){
     cart.add(
         Row(
@@ -113,7 +120,7 @@ class _HealthyTacoSaladState extends State<HealthyTacoSalad> {
                                 Container(
                                   padding: EdgeInsets.only(
                                       top: 10, left: 30),
-                                  child: Text("Amount: $price",
+                                  child: Text("Amount: ${price * quantity}\$",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.black54)),
@@ -151,6 +158,9 @@ class _HealthyTacoSaladState extends State<HealthyTacoSalad> {
             ),
           ],
         ));
+    totalAmount+=(price*quantity);
+    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
+    orders.add('$name X $quantity');
   }
   @override
   Widget build(BuildContext context) {
@@ -259,9 +269,9 @@ class _HealthyTacoSaladState extends State<HealthyTacoSalad> {
                   ),
                   Icon(
                     Icons.star_border_sharp,
-                    size: 10,
+                    size: 10,color: Colors.deepOrangeAccent,
                   ),
-                  Icon(Icons.star_border_sharp, size: 10),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
                   Icon(Icons.star_border_sharp, size: 10),
                   Icon(Icons.star_border_sharp, size: 10),
                   Icon(Icons.star_border_sharp, size: 10),
@@ -269,7 +279,7 @@ class _HealthyTacoSaladState extends State<HealthyTacoSalad> {
                     width: 3,
                   ),
                   Text(
-                    '5.0',
+                    '2.0',
                     style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -409,7 +419,7 @@ class _HealthyTacoSaladState extends State<HealthyTacoSalad> {
                 ],
               ),
               SizedBox(
-                height: 90,
+                height:110,
               ),
               Row(
                 children: [
@@ -418,7 +428,7 @@ class _HealthyTacoSaladState extends State<HealthyTacoSalad> {
                   ),
                   Container(
                     height: 50,
-                    width: 370,
+                    width: 390,
                     decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     child: ElevatedButton(
@@ -436,11 +446,12 @@ class _HealthyTacoSaladState extends State<HealthyTacoSalad> {
                       ),
                       onPressed: () {
                         ordered(cart);
+                        print(orders.length);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
 
                       },
                       style: ElevatedButton.styleFrom(

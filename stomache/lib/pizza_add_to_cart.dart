@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
+import 'package:stomache/order.dart';
 
 
 
@@ -13,6 +14,8 @@ class MyHomePage extends StatefulWidget {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
+  double totalAmount = 0;
+  List<String> orders=[];
 
   MyHomePage(
       {required this.Email,
@@ -21,11 +24,11 @@ class MyHomePage extends StatefulWidget {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart,required this.totalAmount,required this.orders});
 
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart);
+  State<MyHomePage> createState() => _MyHomePageState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -48,6 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
+  double totalAmount = 0;
+  List<String> orders=[];
 
   _MyHomePageState(
       {required this.Email,
@@ -56,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart,required this.totalAmount,required this.orders});
   ordered(List<Widget> cart){
     cart.add(
         Row(
@@ -112,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Container(
                                   padding: EdgeInsets.only(
                                       top: 10, left: 30),
-                                  child: Text("Amount: $price",
+                                  child: Text("Amount: ${price * quantity}\$",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.black54)),
@@ -150,6 +155,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ));
+    totalAmount+=(price*quantity);
+    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
+    orders.add('$name X $quantity');
   }
 
   @override
@@ -260,17 +268,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Icon(
                     Icons.star_border_sharp,
-                    size: 10,
+                    size: 10,color: Colors.deepOrangeAccent,
                   ),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
                   Icon(Icons.star_border_sharp, size: 10),
                   SizedBox(
                     width: 3,
                   ),
                   Text(
-                    '5.0',
+                    '4.0',
                     style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -410,7 +418,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               SizedBox(
-                height: 90,
+                height: 110,
               ),
               Row(
                 children: [
@@ -419,7 +427,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Container(
                     height: 50,
-                    width: 370,
+                    width: 390,
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     child: ElevatedButton(
@@ -441,7 +449,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                       },
                       style: ElevatedButton.styleFrom(
                           primary: Colors.deepOrangeAccent),

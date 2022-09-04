@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
+import 'package:stomache/order.dart';
 
 
 class GrandFamilyBox extends StatefulWidget {
@@ -14,6 +15,7 @@ class GrandFamilyBox extends StatefulWidget {
   List<Widget> cart = [];
   String name ='Juicy Burger';
   String image = "images/image4.jpeg";
+  double totalAmount = 0; List<String> orders=[];
 
   GrandFamilyBox(
       {required this.Email,
@@ -22,10 +24,11 @@ class GrandFamilyBox extends StatefulWidget {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart
+        ,required this.totalAmount,required this.orders});
 
   @override
-  State<GrandFamilyBox> createState() => _GrandFamilyBoxState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart);
+  State<GrandFamilyBox> createState() => _GrandFamilyBoxState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
 class _GrandFamilyBoxState extends State<GrandFamilyBox> {
@@ -44,8 +47,10 @@ class _GrandFamilyBoxState extends State<GrandFamilyBox> {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
-  String name ='Juicy Burger';
-  String image = "images/image4.jpeg";
+  String name ='Grand Family Box';
+  String image = "images/burger0.png";
+  double totalAmount = 0;
+  List<String> orders=[];
 
   _GrandFamilyBoxState(
       {required this.Email,
@@ -54,7 +59,8 @@ class _GrandFamilyBoxState extends State<GrandFamilyBox> {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart
+        ,required this.totalAmount,required this.orders});
   ordered(List<Widget> cart){
     cart.add(
         Row(
@@ -110,7 +116,7 @@ class _GrandFamilyBoxState extends State<GrandFamilyBox> {
                                 Container(
                                   padding: EdgeInsets.only(
                                       top: 10, left: 30),
-                                  child: Text("Amount: $price",
+                                  child: Text("Amount: ${price * quantity}\$",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.black54)),
@@ -148,6 +154,9 @@ class _GrandFamilyBoxState extends State<GrandFamilyBox> {
             ),
           ],
         ));
+    totalAmount+=(price*quantity);
+    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
+    orders.add('$name X $quantity');
   }
   @override
   Widget build(BuildContext context) {
@@ -255,12 +264,12 @@ class _GrandFamilyBoxState extends State<GrandFamilyBox> {
                   ),
                   Icon(
                     Icons.star_border_sharp,
-                    size: 10,
+                    size: 10,color: Colors.deepOrangeAccent,
                   ),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
                   SizedBox(
                     width: 3,
                   ),
@@ -405,7 +414,7 @@ class _GrandFamilyBoxState extends State<GrandFamilyBox> {
                 ],
               ),
               SizedBox(
-                height: 90,
+                height: 110,
               ),
               Row(
                 children: [
@@ -414,7 +423,7 @@ class _GrandFamilyBoxState extends State<GrandFamilyBox> {
                   ),
                   Container(
                     height: 50,
-                    width: 370,
+                    width: 390,
                     decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     child: ElevatedButton(
@@ -436,7 +445,7 @@ class _GrandFamilyBoxState extends State<GrandFamilyBox> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
 
                       },
                       style: ElevatedButton.styleFrom(

@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
+import 'package:stomache/order.dart';
 
 // void main() {
 //   runApp(JucyBurger());
@@ -16,7 +17,8 @@ class JucyBurger extends StatefulWidget {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
-
+  double totalAmount = 0;
+  List<String> orders=[];
   JucyBurger(
       {required this.Email,
         required this.Password,
@@ -24,10 +26,11 @@ class JucyBurger extends StatefulWidget {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart
+        ,required this.totalAmount,required this.orders});
 
   @override
-  State<JucyBurger> createState() => _JucyBurgerState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart);
+  State<JucyBurger> createState() => _JucyBurgerState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
 class _JucyBurgerState extends State<JucyBurger> {
@@ -50,6 +53,8 @@ class _JucyBurgerState extends State<JucyBurger> {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
+  double totalAmount = 0;
+  List<String> orders=[];
 
   _JucyBurgerState(
       {required this.Email,
@@ -58,7 +63,7 @@ class _JucyBurgerState extends State<JucyBurger> {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart,required this.totalAmount,required this.orders});
   ordered(List<Widget> cart){
     cart.add(
     Row(
@@ -114,7 +119,7 @@ class _JucyBurgerState extends State<JucyBurger> {
                             Container(
                               padding: EdgeInsets.only(
                                   top: 10, left: 30),
-                              child: Text("Amount: $price",
+                              child: Text("Amount: ${price * quantity}\$",
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.black54)),
@@ -152,6 +157,10 @@ class _JucyBurgerState extends State<JucyBurger> {
         ),
       ],
     ));
+    totalAmount+=(price*quantity);
+    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
+    orders.add('$name X $quantity');
+
   }
   @override
   Widget build(BuildContext context) {
@@ -260,17 +269,17 @@ class _JucyBurgerState extends State<JucyBurger> {
                   ),
                   Icon(
                     Icons.star_border_sharp,
-                    size: 10,
+                    size: 10,color: Colors.deepOrangeAccent,
                   ),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
                   Icon(Icons.star_border_sharp, size: 10),
                   SizedBox(
                     width: 3,
                   ),
                   Text(
-                    '5.0',
+                    '4.0',
                     style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -437,11 +446,12 @@ class _JucyBurgerState extends State<JucyBurger> {
                       ),
                       onPressed: () {
                           ordered(cart);
+                          print(orders.length);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
 
                       },
                       style: ElevatedButton.styleFrom(

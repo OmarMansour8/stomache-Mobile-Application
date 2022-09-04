@@ -300,6 +300,8 @@ class myaccount extends StatefulWidget {
   List<Widget> cart = [];
   String name ='Juicy Burger';
   String image = "images/image4.jpeg";
+  double totalAmount = 0;
+  List<String> orders=[];
 
   myaccount(
       {required this.Email,
@@ -308,9 +310,9 @@ class myaccount extends StatefulWidget {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart,required this.totalAmount,required this.orders});
   @override
-  State<myaccount> createState() => _myaccountState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart);
+  State<myaccount> createState() => _myaccountState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
 class _myaccountState extends State<myaccount> {
@@ -323,6 +325,8 @@ class _myaccountState extends State<myaccount> {
   List<Widget> cart = [];
   String name ='Juicy Burger';
   String image = "images/image4.jpeg";
+  double totalAmount = 0;
+  List<String> orders=[];
 
   _myaccountState(
       {required this.Email,
@@ -331,7 +335,7 @@ class _myaccountState extends State<myaccount> {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart,required this.totalAmount,required this.orders});
   void getData(){
     FirebaseFirestore.instance
         .collection('Users')
@@ -379,7 +383,7 @@ class _myaccountState extends State<myaccount> {
                     ),
                     Row(
                         children:[
-                          SizedBox(width: 125,),
+                          SizedBox(width: 145,),
                           Container(
                             width: 115,
                             decoration: BoxDecoration(

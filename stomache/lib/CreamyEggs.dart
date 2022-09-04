@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
+import 'package:stomache/order.dart';
 
 
 
@@ -15,6 +16,8 @@ class CreamyEggs extends StatefulWidget {
   List<Widget> cart = [];
   String name ='Juicy Burger';
   String image = "images/image4.jpeg";
+  double totalAmount = 0;
+  List<String> orders=[];
 
   CreamyEggs(
       {required this.Email,
@@ -23,10 +26,10 @@ class CreamyEggs extends StatefulWidget {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart,required this.totalAmount,required this.orders});
 
   @override
-  State<CreamyEggs> createState() => _CreamyEggsState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart);
+  State<CreamyEggs> createState() => _CreamyEggsState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
 class _CreamyEggsState extends State<CreamyEggs> {
@@ -47,8 +50,10 @@ class _CreamyEggsState extends State<CreamyEggs> {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
-  String name ='Juicy Burger';
-  String image = "images/image4.jpeg";
+  String name ='Creamy Eggs';
+  String image = "images/breakfast5.png";
+  double totalAmount = 0;
+  List<String> orders=[];
 
   _CreamyEggsState(
       {required this.Email,
@@ -57,7 +62,7 @@ class _CreamyEggsState extends State<CreamyEggs> {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart,required this.totalAmount,required this.orders});
   ordered(List<Widget> cart){
     cart.add(
         Row(
@@ -113,7 +118,7 @@ class _CreamyEggsState extends State<CreamyEggs> {
                                 Container(
                                   padding: EdgeInsets.only(
                                       top: 10, left: 30),
-                                  child: Text("Amount: $price",
+                                  child: Text("Amount: ${price * quantity}\$",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.black54)),
@@ -151,6 +156,9 @@ class _CreamyEggsState extends State<CreamyEggs> {
             ),
           ],
         ));
+    totalAmount+=(price*quantity);
+    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
+    orders.add('$name X $quantity');
   }
   @override
   Widget build(BuildContext context) {
@@ -257,14 +265,11 @@ class _CreamyEggsState extends State<CreamyEggs> {
                   SizedBox(
                     width: 5,
                   ),
-                  Icon(
-                    Icons.star_border_sharp,
-                    size: 10,
-                  ),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
                   SizedBox(
                     width: 3,
                   ),
@@ -409,7 +414,7 @@ class _CreamyEggsState extends State<CreamyEggs> {
                 ],
               ),
               SizedBox(
-                height: 90,
+                height: 110,
               ),
               Row(
                 children: [
@@ -418,7 +423,7 @@ class _CreamyEggsState extends State<CreamyEggs> {
                   ),
                   Container(
                     height: 50,
-                    width: 370,
+                    width: 390,
                     decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     child: ElevatedButton(
@@ -440,7 +445,7 @@ class _CreamyEggsState extends State<CreamyEggs> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
 
                       },
                       style: ElevatedButton.styleFrom(

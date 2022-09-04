@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
+import 'package:stomache/order.dart';
 
 class FireBurger extends StatefulWidget {
 
@@ -12,6 +13,8 @@ class FireBurger extends StatefulWidget {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
+  double totalAmount = 0;
+  List<String> orders=[];
 
 
   FireBurger(
@@ -21,9 +24,12 @@ class FireBurger extends StatefulWidget {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart
+        ,required this.totalAmount
+        ,required this.orders
+      });
   @override
-  State<FireBurger> createState() => _FireBurgerState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart);
+  State<FireBurger> createState() => _FireBurgerState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
 class _FireBurgerState extends State<FireBurger> {
@@ -44,8 +50,10 @@ class _FireBurgerState extends State<FireBurger> {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
-  String name ='Juicy Burger';
-  String image = "images/image4.jpeg";
+  String name ='Fire Burger';
+  String image = "images/image5.jpg";
+  double totalAmount = 0;
+  List<String> orders=[];
 
   _FireBurgerState(
       {required this.Email,
@@ -54,7 +62,8 @@ class _FireBurgerState extends State<FireBurger> {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart
+        ,required this.totalAmount,required this.orders});
   ordered(List<Widget> cart){
     cart.add(
         Row(
@@ -110,7 +119,7 @@ class _FireBurgerState extends State<FireBurger> {
                                 Container(
                                   padding: EdgeInsets.only(
                                       top: 10, left: 30),
-                                  child: Text("Amount: $price",
+                                  child: Text("Amount: ${price * quantity}\$",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.black54)),
@@ -148,6 +157,9 @@ class _FireBurgerState extends State<FireBurger> {
             ),
           ],
         ));
+    totalAmount+=(price*quantity);
+    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
+    orders.add('$name X $quantity');
   }
   @override
   Widget build(BuildContext context) {
@@ -256,17 +268,17 @@ class _FireBurgerState extends State<FireBurger> {
                   ),
                   Icon(
                     Icons.star_border_sharp,
-                    size: 10,
+                    size: 10,color: Colors.deepOrangeAccent,
                   ),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
-                  Icon(Icons.star_border_sharp, size: 10),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
                   Icon(Icons.star_border_sharp, size: 10),
                   SizedBox(
                     width: 3,
                   ),
                   Text(
-                    '5.0',
+                    '4.0',
                     style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -406,7 +418,7 @@ class _FireBurgerState extends State<FireBurger> {
                 ],
               ),
               SizedBox(
-                height: 90,
+                height: 110,
               ),
               Row(
                 children: [
@@ -415,7 +427,7 @@ class _FireBurgerState extends State<FireBurger> {
                   ),
                   Container(
                     height: 50,
-                    width: 370,
+                    width: 390,
                     decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     child: ElevatedButton(
@@ -437,7 +449,7 @@ class _FireBurgerState extends State<FireBurger> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
 
                       },
                       style: ElevatedButton.styleFrom(

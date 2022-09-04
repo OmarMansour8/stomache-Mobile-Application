@@ -19,6 +19,8 @@ class _Sign_InState extends State<Sign_In> {
   String mobileNumber = '';
   String gender = '';
   String dateOfBirth = '';
+  double totalAmount = 0;
+  List<String> orders=[];
   final FirebaseAuth _auth = FirebaseAuth.instance;
   TextEditingController _controller = new TextEditingController();
   CollectionReference users = FirebaseFirestore.instance.collection('Users');
@@ -85,6 +87,7 @@ class _Sign_InState extends State<Sign_In> {
                           ]),
                       padding: EdgeInsets.all(1),
                       child: TextField(
+                        cursorColor: Colors.deepOrangeAccent,
                         onChanged: (value) {
                           setState(() {
                             Email = value;
@@ -92,17 +95,14 @@ class _Sign_InState extends State<Sign_In> {
                           getData();
                         },
                         decoration: InputDecoration(
-                            labelText: 'Email',
-                            prefixIcon: Icon(Icons.account_circle)),
+                            focusedBorder:UnderlineInputBorder(borderSide: BorderSide(color: Colors.deepOrangeAccent)),
+                            focusColor: Colors.deepOrangeAccent,
+                            labelStyle: TextStyle(color: Colors.deepOrangeAccent),
+                          labelText: 'Email',
+                            prefixIcon: Icon(Icons.account_circle,color: Colors.deepOrangeAccent,),),
                       ),
                     ),
-                    // Text((() {
-                    //   if(checkCondition=true){
-                    //     getData();
-                    //     return "";}
-                    //   else{
-                    //     return "";}
-                    // })()),
+
                     Container(
                       margin: EdgeInsets.all(10),
                       decoration: BoxDecoration(
@@ -116,6 +116,8 @@ class _Sign_InState extends State<Sign_In> {
                           ]),
                       padding: EdgeInsets.all(1),
                       child: TextField(
+                        obscureText: true,
+                        cursorColor: Colors.deepOrangeAccent,
                         onChanged: (value) {
                           setState(() {
                             Password = value;
@@ -124,41 +126,17 @@ class _Sign_InState extends State<Sign_In> {
                         },
                         controller: _controller,
                         decoration: InputDecoration(
+                            focusColor: Colors.deepOrangeAccent,
+                            labelStyle: TextStyle(color: Colors.deepOrangeAccent),
+                            focusedBorder:UnderlineInputBorder(borderSide: BorderSide(color: Colors.deepOrangeAccent)),
+
                             labelText: 'Password',
-                            prefixIcon: Icon(Icons.password)),
+
+                            prefixIcon: Icon(Icons.password,color: Colors.deepOrangeAccent,)),
                       ),
                     ),
-                    // ElevatedButton(onPressed: (){
-                    //   FirebaseFirestore.instance
-                    //       .collection('Users')
-                    //       .doc(Email)
-                    //       .get()
-                    //       .then((value) {
-                    //
-                    //     fullName = value.get('Full Name');
-                    //     mobileNumber = value.get('Mobile Number');
-                    //     gender=value.get('Gender');
-                    //     dateOfBirth = value.get('Date Of Birth');
-                    //
-                    //   });
-                    //   print(Email);
-                    //   print(Password);
-                    //   print(gender);
-                    //   print(dateOfBirth);
-                    //   print(fullName);
-                    //   print(mobileNumber);
-                    //
-                    // }, child: Text('omaar!!')),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Forgot_Password()));
-                      },
-                      child: const Text('Forgot Password',
-                          style: TextStyle(color: Colors.deepOrange)),
-                    ),
+
+                    SizedBox(height: 30,),
                     Container(
                         margin: EdgeInsets.symmetric(vertical: 12),
                         width: size.width * 0.9,
@@ -171,30 +149,37 @@ class _Sign_InState extends State<Sign_In> {
                               try {
                                 final newUser =
                                     await _auth.signInWithEmailAndPassword(
-                                        email: Email, password: Password);
+                                        email: Email, password: Password).catchError((err){
+                                  showDialog(
+                                    context: context,builder: (BuildContext context){
+                                     return AlertDialog(
+                                       title: Text('error'),
+                                       content: Text(err.message),
+                                       actions: [
+                                         FlatButton(onPressed: (){
+                                           Navigator.pop(context);
+                                         }, child: Text('Ok'))
+                                       ],
+                                     ) ;
+                                  },
+                                  );
+                                });
+
                                 if (newUser != null) {
                                   print('Account has been successfuly created');
 
-                                  // print(Email);
-                                  // print(Password);
-                                  // print(gender);
-                                  // print(dateOfBirth);
-                                  // print(fullName);
-                                  // print(mobileNumber);
-                                  //
+
+
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => homePage(
-                                              Email: Email,
-                                              Password: Password,
-                                              fullName: fullName,
-                                              mobileNumber: mobileNumber,
-                                              gender: gender,
-                                              dateOfBirth: dateOfBirth,cart: cart)));
+                                          builder: (context) => homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                                   _controller.clear();
+
                                 }
-                              } catch (e) {
+
+                              }
+                              catch (e) {
                                 print(e);
                               }
                             },
@@ -229,33 +214,6 @@ class _Sign_InState extends State<Sign_In> {
                     ),
                   ],
                 ))
-            //backgroundColor: Colors.white,
-//       body:Column(
-//            //crossAxisAlignment: CrossAxisAlignment.center,
-//              mainAxisAlignment: MainAxisAlignment.center,
-//              children: <Widget>[
-//                  Text('Sing In',
-//                    style: TextStyle(
-//                     color: Colors.black,
-//                         fontSize: 40 ,
-//                           fontWeight: FontWeight.bold,
-// ),
-// ),
-//                 SizedBox(height: 50),
-//                   buildEmail(),
-// ]
-//     )
-            // body:Container(
-            //   margin: EdgeInsets.symmetric(vertical: 10),
-            //   padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-            //   width: size.width*0.8,
-            //   decoration: BoxDecoration(
-            //     color: Colors.orange[50],
-            //     borderRadius: BorderRadius.circular(29)
-            //   ),
-            //
-            //
-            // ),
 
             ));
   }

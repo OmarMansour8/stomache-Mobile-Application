@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stomache/BuffaloChickenPizza.dart';
-import 'package:stomache/SpicyChickenRanchPizza.dart';
+import 'package:stomache/ChickenPizza.dart';
+import 'package:stomache/ChickenRanchPizza.dart';
 import 'package:stomache/VeggiPizza.dart';
 import 'package:stomache/pizza_add_to_cart.dart';
 //import 'package:webview_flutter/webview_flutter.dart';
@@ -15,6 +15,8 @@ class pizza extends StatefulWidget {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
+  double totalAmount = 0;
+  List<String> orders=[];
 
   pizza(
       {required this.Email,
@@ -23,10 +25,10 @@ class pizza extends StatefulWidget {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart,required this.totalAmount,required this.orders});
 
   @override
-  State<pizza> createState() => _pizzaState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart);
+  State<pizza> createState() => _pizzaState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
 class _pizzaState extends State<pizza> {
@@ -40,6 +42,7 @@ class _pizzaState extends State<pizza> {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
+  double totalAmount = 0; List<String> orders=[];
 
   _pizzaState(
       {required this.Email,
@@ -48,14 +51,16 @@ class _pizzaState extends State<pizza> {
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart});
+        required this.cart,required this.totalAmount,required this.orders});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    print(orders.length);
     return   Column(children:<Widget> [
 
       Row(children:<Widget> [
+        SizedBox(width: 10,),
         Container(
           width: 375,
           height: 280,
@@ -74,7 +79,7 @@ class _pizzaState extends State<pizza> {
                 contentPadding: EdgeInsets.only(left: 20,top: 200,right: 18),
                 trailing: Icon(Icons.add_shopping_cart),
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>VeggiPizza(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>VeggiPizza(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                 },
                 iconColor: Colors.deepOrange,
 
@@ -104,6 +109,7 @@ class _pizzaState extends State<pizza> {
       ],),
 
       Row(children:<Widget> [
+        SizedBox(width: 10,),
         Container(
           width: 375,
           height: 280,
@@ -122,11 +128,11 @@ class _pizzaState extends State<pizza> {
                 contentPadding: EdgeInsets.only(left: 20,top: 200,right: 18),
                 trailing: Icon(Icons.add_shopping_cart),
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>BuffaloChickenPizza(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ChickenPizza(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                 },
                 iconColor: Colors.deepOrange,
 
-                title: Text("Buffalo Chicken Pizza",style: TextStyle(fontSize: 17)),
+                title: Text("Chicken Pizza",style: TextStyle(fontSize: 17)),
 
 
               ),
@@ -154,7 +160,7 @@ class _pizzaState extends State<pizza> {
 
       Row(children:<Widget> [
         ///////////Cheesy Burger/////////////
-
+        SizedBox(width: 10,),
         Container(
           width: 180,
           height: 190,
@@ -173,11 +179,11 @@ class _pizzaState extends State<pizza> {
                 contentPadding: EdgeInsets.only(left: 20,top: 108,right: 18),
                 trailing: Icon(Icons.add_shopping_cart),
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SpicyChickenRanchPizza(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ChickenRanchPizza(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                 },
                 iconColor: Colors.deepOrange,
 
-                title: Text("Spicy Chicken Ranch Pizza",style: TextStyle(fontSize: 14)),
+                title: Text("Chicken Ranch",style: TextStyle(fontSize: 14)),
 
 
               ),
@@ -220,7 +226,7 @@ class _pizzaState extends State<pizza> {
                 contentPadding: EdgeInsets.only(left: 20,top: 108,right: 18),
                 trailing: Icon(Icons.add_shopping_cart),
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart)));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
                 },
                 iconColor: Colors.deepOrange,
 
