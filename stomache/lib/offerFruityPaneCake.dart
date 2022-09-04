@@ -1,8 +1,6 @@
-import 'dart:math';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
-import 'package:stomache/order.dart';
 
 class offerFruityPanCake extends StatefulWidget { String Email = '';
 String Password = '';
@@ -11,8 +9,6 @@ String mobileNumber = '';
 String gender = '';
 String dateOfBirth = '';
 List<Widget> cart = [];
-String name ='Juicy Burger';
-String image = "images/image4.jpeg";
 double totalAmount = 0;
 List<String> orders=[];
 
@@ -34,11 +30,11 @@ class _offerFruityPanCakeState extends State<offerFruityPanCake> {
   IconData x = (Icons.favorite_outline);
   Color y = Colors.black;
   int quantity = 1;
-  double price = 0;
+  double price = 25;
   double smallTacoPrice = 25.00;
   double mediumTacoPrice = 35.00;
   double largeTacoPrice = 35.00;
-  String selectedSize = '';
+  String selectedSize ='Small';
   int favourite = 0;
   String Email = '';
   String Password = '';
@@ -155,7 +151,6 @@ class _offerFruityPanCakeState extends State<offerFruityPanCake> {
           ],
         ));
     totalAmount+=(price*quantity);
-    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
     orders.add('$name X $quantity');
   }
   @override
@@ -332,6 +327,7 @@ class _offerFruityPanCakeState extends State<offerFruityPanCake> {
                     orientation: GroupedButtonsOrientation.HORIZONTAL,
                     labelStyle: TextStyle(fontSize: 12),
                     activeColor: Colors.deepOrangeAccent,
+                    picked: selectedSize,
                     onSelected: (String selected){
                       selectedSize=selected;
 

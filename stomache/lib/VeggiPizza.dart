@@ -1,8 +1,6 @@
-import 'dart:math';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
-import 'package:stomache/order.dart';
 
 
 
@@ -14,8 +12,6 @@ class VeggiPizza extends StatefulWidget {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
-  String name ='Juicy Burger';
-  String image = "images/image4.jpeg";
   double totalAmount = 0;
   List<String> orders=[];
 
@@ -37,11 +33,11 @@ class _VeggiPizzaState extends State<VeggiPizza> {
   IconData x = (Icons.favorite_outline);
   Color y = Colors.black;
   int quantity = 1;
-  double price = 0;
+  double price = 70;
   double smallPrice = 70.00;
   double mediumPrice = 100.00;
   double largePrice = 140.00;
-  String selectedSize = '';
+  String selectedSize = 'Small';
   int favourite = 0;
   String Email = '';
   String Password = '';
@@ -54,7 +50,7 @@ class _VeggiPizzaState extends State<VeggiPizza> {
   String image = "images/pizza1.jpg";
   double totalAmount = 0;
   List<String> orders=[];
-
+//contructor
   _VeggiPizzaState(
       {required this.Email,
         required this.Password,
@@ -63,6 +59,7 @@ class _VeggiPizzaState extends State<VeggiPizza> {
         required this.gender,
         required this.dateOfBirth,
         required this.cart,required this.totalAmount,required this.orders});
+  //putting orders in list of widgets
   ordered(List<Widget> cart){
     cart.add(
         Row(
@@ -156,8 +153,9 @@ class _VeggiPizzaState extends State<VeggiPizza> {
             ),
           ],
         ));
+    //calculating total price
     totalAmount+=(price*quantity);
-    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
+    //saving my ordered items in list to push it to fire base later
     orders.add('$name X $quantity');
   }
   @override
@@ -165,12 +163,6 @@ class _VeggiPizzaState extends State<VeggiPizza> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('details', style: TextStyle(color: Colors.black),),
-        //   backgroundColor: Colors.white,
-        //   centerTitle: true
-        //   ,
-        // ),
         body: SafeArea(
           child: Column(
             children: <Widget>[
@@ -334,6 +326,7 @@ class _VeggiPizzaState extends State<VeggiPizza> {
                     orientation: GroupedButtonsOrientation.HORIZONTAL,
                     labelStyle: TextStyle(fontSize: 12),
                     activeColor: Colors.deepOrangeAccent,
+                    picked: selectedSize,
                     onSelected: (String selected){
                       selectedSize=selected;
 

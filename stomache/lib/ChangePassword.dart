@@ -35,24 +35,27 @@ class _Change_PasswordState extends State<Change_Password> {
   String currentPassword='';
   String confirmPassword='';
   bool buttonEnabled = false;
+  List<Widget> cart = [];
+  double totalAmount = 0;
+  List<String> orders=[];
+final currentUser = FirebaseAuth.instance.currentUser;
+final newPasswordContoller =TextEditingController();
+  //method to enable save button
   enableButton(){
     buttonEnabled = true;
   }
 
-  List<Widget> cart = [];
-  String name ='Juicy Burger';
-  String image = "images/image4.jpeg";
-  double totalAmount = 0;
-  List<String> orders=[];
+//constructor
 
-final currentUser = FirebaseAuth.instance.currentUser;
-final newPasswordContoller =TextEditingController();
   _Change_PasswordState({required this.Email,required this.Password,required this.fullName,required this.mobileNumber,
     required this.gender,required this.dateOfBirth,required this.totalAmount,required this.orders});
+
+  //change password in user document(optional)
   updateData(val){
     FirebaseFirestore.instance.collection('Users').doc(Email).update({'Password': '$val'});
   }
-  changePAssword(newPassword) async{
+  //change password from fire base authentication
+  changePassword(newPassword) async{
     try{
       await currentUser!.updatePassword(newPassword);
       FirebaseAuth.instance.signOut();
@@ -74,6 +77,7 @@ final newPasswordContoller =TextEditingController();
         home: Scaffold(
             body: Padding(
                 padding: EdgeInsets.all(20),
+
                 child: ListView(
                     children: <Widget>[
                       IconButton(onPressed: (){Navigator.pop(context);}, icon:Icon(Icons.arrow_back_ios),alignment: Alignment.topLeft,),
@@ -87,6 +91,7 @@ final newPasswordContoller =TextEditingController();
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20),
                           )),
+                      //old Password Field
                       Container(
                         margin: EdgeInsets.all(15),
                         decoration: BoxDecoration(
@@ -117,6 +122,7 @@ final newPasswordContoller =TextEditingController();
                           ,
                         ),
                       ),
+                      //new Password Field
                       Container(
                         margin: EdgeInsets.all(15),
                         decoration: BoxDecoration(
@@ -145,6 +151,7 @@ final newPasswordContoller =TextEditingController();
                             }
                         ),
                       ),
+                      //Confirm Password Field
                       Container(
                         margin: EdgeInsets.all(15),
                         decoration: BoxDecoration(
@@ -172,13 +179,10 @@ final newPasswordContoller =TextEditingController();
                            });
 
                             }
-                            //old [122341]
-                          // new[dfkjs]
-                          // confirm[ksdjfh]
-                          //[]
-                        //
+
                         ),
                       ),
+                      //error msg
                       Row(
                           children:[
                             SizedBox(width: 25,),
@@ -188,19 +192,18 @@ final newPasswordContoller =TextEditingController();
                                 return "";}
                               else{
                                 return "Old password must be correct and\nnew password must match in both fields ";}
-                            })()),
+                            })(),style: TextStyle(color: Colors.redAccent),),
                           ]),
                       SizedBox(height: 80,),
 
-
+                    //save button
 
                       ElevatedButton(onPressed:buttonEnabled ? (){
 
 
                         updateData(newPassword);
-                        changePAssword(newPassword);
+                        changePassword(newPassword);
 
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>setting(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
 
 
                       }:null, child: Text('Save'),style: ElevatedButton.styleFrom(primary: Colors.deepOrange),),

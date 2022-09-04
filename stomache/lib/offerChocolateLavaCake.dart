@@ -1,9 +1,5 @@
-import 'dart:math';
-import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
-import 'package:stomache/order.dart';
-
 
 class offerChocolateLavaCake extends StatefulWidget {
   String Email = '';
@@ -14,17 +10,28 @@ class offerChocolateLavaCake extends StatefulWidget {
   String dateOfBirth = '';
   List<Widget> cart = [];
   double totalAmount = 0;
-  List<String> orders=[];
+  List<String> orders = [];
   offerChocolateLavaCake(
       {required this.Email,
-        required this.Password,
-        required this.fullName,
-        required this.mobileNumber,
-        required this.gender,
-        required this.dateOfBirth,
-        required this.cart,required this.totalAmount,required this.orders});
+      required this.Password,
+      required this.fullName,
+      required this.mobileNumber,
+      required this.gender,
+      required this.dateOfBirth,
+      required this.cart,
+      required this.totalAmount,
+      required this.orders});
   @override
-  State<offerChocolateLavaCake> createState() => _offerChocolateLavaCakeState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
+  State<offerChocolateLavaCake> createState() => _offerChocolateLavaCakeState(
+      Email: Email,
+      Password: Password,
+      fullName: fullName,
+      mobileNumber: mobileNumber,
+      gender: gender,
+      dateOfBirth: dateOfBirth,
+      cart: cart,
+      totalAmount: totalAmount,
+      orders: orders);
 }
 
 class _offerChocolateLavaCakeState extends State<offerChocolateLavaCake> {
@@ -43,127 +50,116 @@ class _offerChocolateLavaCakeState extends State<offerChocolateLavaCake> {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
-  String name ='Chocolate Cake';
+  String name = 'Chocolate Cake';
   String image = "images/image7.jpg";
   double totalAmount = 0;
-  List<String> orders=[];
+  List<String> orders = [];
   _offerChocolateLavaCakeState(
       {required this.Email,
-        required this.Password,
-        required this.fullName,
-        required this.mobileNumber,
-        required this.gender,
-        required this.dateOfBirth,
-        required this.cart
-        ,required this.totalAmount,required this.orders});
-  ordered(List<Widget> cart){
-    cart.add(
-        Row(
-          children: <Widget>[
-            Container(
-              width: 385,
-              height: 150,
-              padding: EdgeInsets.only(top: 10),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                elevation: 10,
-                color: Colors.white,
-                child: Row(children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        width: 200,
-                        child: Column(
+      required this.Password,
+      required this.fullName,
+      required this.mobileNumber,
+      required this.gender,
+      required this.dateOfBirth,
+      required this.cart,
+      required this.totalAmount,
+      required this.orders});
+  ordered(List<Widget> cart) {
+    cart.add(Row(
+      children: <Widget>[
+        Container(
+          width: 385,
+          height: 150,
+          padding: EdgeInsets.only(top: 10),
+          child: Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            elevation: 10,
+            color: Colors.white,
+            child: Row(children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: 200,
+                    child: Column(
+                      children: <Widget>[
+                        Row(
                           children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                Container(
-                                  padding: EdgeInsets.only(
-                                      top: 10, left: 15),
-                                  child: Text("${name}",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold)),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.only(
-                                      top: 10, left: 30),
-                                  child: Text("Quantity: ${quantity}",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.black54)),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.only(
-                                      top: 10, left: 30),
-                                  child: Text("Amount: ${price * quantity}\$",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.black54)),
-                                ),
-                              ],
+                            Container(
+                              padding: EdgeInsets.only(top: 10, left: 15),
+                              child: Text("${name}",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold)),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: 43,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        width: 130,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(15),
-                              bottomRight: Radius.circular(15)),
-                          child: Image(
-                            image: AssetImage("$image"),
-                            alignment: Alignment.centerRight,
-                            width: 150,
-                            height: 200,
-                          ),
+                        SizedBox(
+                          height: 15,
                         ),
-                      ),
-                    ],
-                  )
-                ]),
+                        Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(top: 10, left: 30),
+                              child: Text("Quantity: ${quantity}",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black54)),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(top: 10, left: 30),
+                              child: Text("Amount: ${price * quantity}\$",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black54)),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ));
-    totalAmount+=(price*quantity);
-    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
+              SizedBox(
+                width: 43,
+              ),
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: 130,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(15),
+                          bottomRight: Radius.circular(15)),
+                      child: Image(
+                        image: AssetImage("$image"),
+                        alignment: Alignment.centerRight,
+                        width: 150,
+                        height: 200,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ]),
+          ),
+        ),
+      ],
+    ));
+    totalAmount += (price * quantity);
     orders.add('$name X $quantity');
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('details', style: TextStyle(color: Colors.black),),
-        //   backgroundColor: Colors.white,
-        //   centerTitle: true
-        //   ,
-        // ),
         body: SafeArea(
           child: Column(
             children: <Widget>[
@@ -218,15 +214,15 @@ class _offerChocolateLavaCakeState extends State<offerChocolateLavaCake> {
               ),
               Center(
                   child: Container(
-                    width: 200,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("images/image7.jpg"),
-                          fit: BoxFit.cover,
-                        ),
-                        borderRadius: BorderRadius.circular(20)),
-                    height: 200,
-                  )),
+                width: 200,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("images/image7.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(20)),
+                height: 200,
+              )),
               SizedBox(
                 height: 60,
               ),
@@ -239,9 +235,7 @@ class _offerChocolateLavaCakeState extends State<offerChocolateLavaCake> {
                     'Chocolate Cake',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
-                      width: 185
-                  ),
+                  SizedBox(width: 185),
                   Text('$price\$',
                       style: TextStyle(
                           fontSize: 16,
@@ -259,12 +253,29 @@ class _offerChocolateLavaCakeState extends State<offerChocolateLavaCake> {
                   ),
                   Icon(
                     Icons.star_border_sharp,
-                    size: 10,color: Colors.deepOrangeAccent,
+                    size: 10,
+                    color: Colors.deepOrangeAccent,
                   ),
-                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
-                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
-                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
-                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(
+                    Icons.star_border_sharp,
+                    size: 10,
+                    color: Colors.deepOrangeAccent,
+                  ),
+                  Icon(
+                    Icons.star_border_sharp,
+                    size: 10,
+                    color: Colors.deepOrangeAccent,
+                  ),
+                  Icon(
+                    Icons.star_border_sharp,
+                    size: 10,
+                    color: Colors.deepOrangeAccent,
+                  ),
+                  Icon(
+                    Icons.star_border_sharp,
+                    size: 10,
+                    color: Colors.deepOrangeAccent,
+                  ),
                   SizedBox(
                     width: 3,
                   ),
@@ -420,7 +431,7 @@ class _offerChocolateLavaCakeState extends State<offerChocolateLavaCake> {
                     height: 50,
                     width: 390,
                     decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     child: ElevatedButton(
                       child: Row(
                         children: [
@@ -440,9 +451,16 @@ class _offerChocolateLavaCakeState extends State<offerChocolateLavaCake> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
-
+                                builder: (context) => homePage(
+                                    Email: Email,
+                                    Password: Password,
+                                    fullName: fullName,
+                                    mobileNumber: mobileNumber,
+                                    gender: gender,
+                                    dateOfBirth: dateOfBirth,
+                                    cart: cart,
+                                    totalAmount: totalAmount,
+                                    orders: orders)));
                       },
                       style: ElevatedButton.styleFrom(
                           primary: Colors.deepOrangeAccent),

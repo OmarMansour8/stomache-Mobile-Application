@@ -1,8 +1,8 @@
-import 'dart:math';
+
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
-import 'package:stomache/order.dart';
+
 
 
 class ChickenPizza extends StatefulWidget {
@@ -36,7 +36,7 @@ class _ChickenPizzaState extends State<ChickenPizza> {
   IconData x = (Icons.favorite_outline);
   Color y = Colors.black;
   int quantity = 1;
-  double price = 0;
+  double price = 80;
   double smallPrice = 80.00;
   double mediumPrice = 110.00;
   double largePrice = 150.00;
@@ -53,7 +53,7 @@ class _ChickenPizzaState extends State<ChickenPizza> {
   String name ='Chicken Pizza';
   String image = "images/pizza2.jpg";
   List<String> orders=[];
-
+//constructor
   _ChickenPizzaState(
       {required this.Email,
         required this.Password,
@@ -65,6 +65,7 @@ class _ChickenPizzaState extends State<ChickenPizza> {
         ,required this.totalAmount
         ,required this.orders
       });
+  //putting orders in list of widgets
   ordered(List<Widget> cart){
     cart.add(
         Row(
@@ -158,22 +159,17 @@ class _ChickenPizzaState extends State<ChickenPizza> {
             ),
           ],
         ));
+    //calculating total price
     totalAmount+=(price*quantity);
-    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
+    //saving my ordered items in list to push it to fire base later
     orders.add('$name X $quantity');
   }
-  String selected = 'Small';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('details', style: TextStyle(color: Colors.black),),
-        //   backgroundColor: Colors.white,
-        //   centerTitle: true
-        //   ,
-        // ),
         body: SafeArea(
           child: Column(
             children: <Widget>[
@@ -338,8 +334,11 @@ class _ChickenPizzaState extends State<ChickenPizza> {
                     orientation: GroupedButtonsOrientation.HORIZONTAL,
                     labelStyle: TextStyle(fontSize: 12),
                     activeColor: Colors.deepOrangeAccent,
+                    picked: selectedSize,
+
 
                     onSelected: (selected){
+
 
 
                       setState(() {

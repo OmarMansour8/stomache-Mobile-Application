@@ -18,7 +18,7 @@ class AddToCart extends StatefulWidget {
   List<Widget> cart = [];
   double totalAmount = 0;
   List<String> orders = [];
-
+//constructor
   AddToCart(
       {required this.Email,
       required this.Password,
@@ -52,9 +52,8 @@ class _AddToCartState extends State<AddToCart> {
   String dateOfBirth = '';
   List<Widget> cart = [];
   double totalAmount = 0;
-  var _index = 3;
   List<String> orders = [];
-
+//constructor
   _AddToCartState(
       {required this.Email,
       required this.Password,
@@ -71,6 +70,8 @@ class _AddToCartState extends State<AddToCart> {
         title: 'Flutter Demo',
         theme: ThemeData(),
         home: Scaffold(
+
+          //AppBar
           appBar: AppBar(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
@@ -102,6 +103,7 @@ class _AddToCartState extends State<AddToCart> {
             ),
             actions: [
               Container(
+                //clear cart icon
                 child: IconButton(
                     onPressed: () {
                       cart.clear();
@@ -147,6 +149,7 @@ class _AddToCartState extends State<AddToCart> {
                           )
                         ],
                       ),
+                      //display ordered item
                       for (int i = 0; i < cart.length; i++) cart[i],
                     ],
                   ),
@@ -154,6 +157,7 @@ class _AddToCartState extends State<AddToCart> {
               ],
             ),
           ),
+          //total amount & proceed tp checkout button
           bottomNavigationBar: (Row(
             children: <Widget>[
               Container(
@@ -169,7 +173,7 @@ class _AddToCartState extends State<AddToCart> {
               Container(
                 child: ElevatedButton(
                     onPressed: () {
-
+                      //adding order to fire base
                       FirebaseFirestore.instance.collection('orders').add({
                         'Full Name': '$fullName',
                         'Email': '$Email',
@@ -192,7 +196,7 @@ class _AddToCartState extends State<AddToCart> {
                                   cart: cart,
                                   totalAmount: totalAmount,
                                   orders: orders)));
-                      print(orders.length);
+
                       cart.clear();
                       orders.clear();
                       totalAmount = 0;

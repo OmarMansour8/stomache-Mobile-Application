@@ -29,6 +29,7 @@ class _About_appState extends State<About_app> {
                                 fontSize: 20),
                           )),
                       SizedBox(height: 30,width: 30),
+                      //Facebook tile
                       ListTile(
                           title:Text('Facebook'),
                           subtitle: Text(''),
@@ -37,6 +38,7 @@ class _About_appState extends State<About_app> {
                           onTap:(){Navigator.push(context, MaterialPageRoute(builder: (context)=>Facebook()));}
                       ),
                       SizedBox(height: 10,width: 10),
+                      //Twitter Tile
                       ListTile(
                           title:Text('Twitter'),
                           subtitle: Text(''),
@@ -45,6 +47,7 @@ class _About_appState extends State<About_app> {
                           onTap:(){Navigator.push(context, MaterialPageRoute(builder: (context)=>Twitter()));}
                       ),
                       SizedBox(height: 10,width: 10),
+                      //instagram Tile
                       ListTile(
                           title:Text('Instagram'),
                           subtitle: Text(''),

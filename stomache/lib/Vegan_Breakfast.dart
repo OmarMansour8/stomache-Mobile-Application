@@ -1,8 +1,6 @@
-import 'dart:math';
-import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
-import 'package:stomache/order.dart';
+
 
 
 
@@ -14,8 +12,6 @@ class VeganBreakfast extends StatefulWidget {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
-  String name ='Juicy Burger';
-  String image = "images/image4.jpeg";
   double totalAmount = 0;
   List<String> orders=[];
 
@@ -40,7 +36,7 @@ class _VeganBreakfastState extends State<VeganBreakfast> {
   double price = 50;
   double smallPrice = 50.00;
 
-  String selectedSize = '';
+  String selectedSize = 'Small';
   int favourite = 0;
   String Email = '';
   String Password = '';
@@ -156,7 +152,6 @@ class _VeganBreakfastState extends State<VeganBreakfast> {
           ],
         ));
     totalAmount+=(price*quantity);
-    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
     orders.add('$name X $quantity');
   }
   @override
@@ -164,12 +159,6 @@ class _VeganBreakfastState extends State<VeganBreakfast> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('details', style: TextStyle(color: Colors.black),),
-        //   backgroundColor: Colors.white,
-        //   centerTitle: true
-        //   ,
-        // ),
         body: SafeArea(
           child: Column(
             children: <Widget>[
@@ -328,28 +317,7 @@ class _VeganBreakfastState extends State<VeganBreakfast> {
                   SizedBox(
                     width: 70,
                   ),
-                  // RadioButtonGroup(
-                  //   labels: <String>['Small', 'Medium', 'large'],
-                  //   orientation: GroupedButtonsOrientation.HORIZONTAL,
-                  //   labelStyle: TextStyle(fontSize: 12),
-                  //   activeColor: Colors.deepOrangeAccent,
-                  //   onSelected: (String selected){
-                  //     selectedSize=selected;
-                  //
-                  //     setState(() {
-                  //       if(selected == 'Small'){
-                  //         price = smallPrice;
-                  //       }
-                  //       else if(selected == 'Medium'){
-                  //         price = mediumPrice;
-                  //       }
-                  //       else if(selected == 'large'){
-                  //         price = largePrice;
-                  //       }
-                  //     });
-                  //
-                  //   },
-                  // )
+
                 ],
               ),
               SizedBox(

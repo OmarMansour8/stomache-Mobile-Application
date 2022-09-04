@@ -1,11 +1,11 @@
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
+import 'package:stomache/order.dart';
 
 
 
-class offerBeefPasta extends StatefulWidget {
-
+class MyHomePage extends StatefulWidget {
   String Email = '';
   String Password = '';
   String fullName = '';
@@ -16,30 +16,33 @@ class offerBeefPasta extends StatefulWidget {
   double totalAmount = 0;
   List<String> orders=[];
 
-  offerBeefPasta(
+  MyHomePage(
       {required this.Email,
         required this.Password,
         required this.fullName,
         required this.mobileNumber,
         required this.gender,
         required this.dateOfBirth,
-        required this.cart
-        ,required this.totalAmount,required this.orders});
+        required this.cart,required this.totalAmount,required this.orders});
+
+
   @override
-  State<offerBeefPasta> createState() => _offerBeefPastaState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
+  State<MyHomePage> createState() => _MyHomePageState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
 }
 
-class _offerBeefPastaState extends State<offerBeefPasta> {
+class _MyHomePageState extends State<MyHomePage> {
   bool isFavourite = false;
   IconData x = (Icons.favorite_outline);
   Color y = Colors.black;
   int quantity = 1;
-  double price = 60;
-  double smallTacoPrice = 65.00;
-  double mediumTacoPrice = 85.00;
-  double largeTacoPrice = 100.00;
+  double price = 50;
+  double smallPizzaPrice = 50.00;
+  double mediuamPizzaPrice = 80.00;
+  double largePizzaPrice = 120.00;
   String selectedSize = 'Small';
   int favourite = 0;
+  String name ='Cheesy Pizza';
+  String image = "images/image6.jpeg";
   String Email = '';
   String Password = '';
   String fullName = '';
@@ -47,12 +50,10 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
-  String name ='Beef Pasta(offer)';
-  String image = "images/image8.jpg";
   double totalAmount = 0;
   List<String> orders=[];
 
-  _offerBeefPastaState(
+  _MyHomePageState(
       {required this.Email,
         required this.Password,
         required this.fullName,
@@ -156,17 +157,12 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
     totalAmount+=(price*quantity);
     orders.add('$name X $quantity');
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('details', style: TextStyle(color: Colors.black),),
-        //   backgroundColor: Colors.white,
-        //   centerTitle: true
-        //   ,
-        // ),
         body: SafeArea(
           child: Column(
             children: <Widget>[
@@ -187,7 +183,7 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
                       width: 125,
                     ),
                     Text(
-                      'details',
+                      'Details',
                       style: TextStyle(fontSize: 16),
                     ),
                     SizedBox(
@@ -207,6 +203,7 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
                           }
                         });
 
+
                       },
                       icon: Icon(
                         x,
@@ -222,15 +219,15 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
               ),
               Center(
                   child: Container(
-                    width: 200,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("images/image8.jpg"),
-                          fit: BoxFit.cover,
-                        ),
-                        borderRadius: BorderRadius.circular(20)),
-                    height: 200,
-                  )),
+                width: 200,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("images/image6.jpeg"),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(20)),
+                height: 200,
+              )),
               SizedBox(
                 height: 50,
               ),
@@ -240,11 +237,11 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
                     width: 10,
                   ),
                   Text(
-                    'Ground Beef Pasta',
+                    'Cheesy Pizza',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    width: 195,
+                    width: 230,
                   ),
                   Text('$price\$',
                       style: TextStyle(
@@ -268,18 +265,18 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
                   Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
                   Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
                   Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
-                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(Icons.star_border_sharp, size: 10),
                   SizedBox(
                     width: 3,
                   ),
                   Text(
-                    '5.0',
+                    '4.0',
                     style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
               SizedBox(
-                height: 30,
+                height: 10,
               ),
               Row(
                 children: [
@@ -334,17 +331,17 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
                     onSelected: (String selected){
                       selectedSize=selected;
 
-                      setState(() {
-                        if(selected == 'Small'){
-                          price = smallTacoPrice;
-                        }
-                        else if(selected == 'Medium'){
-                          price = mediumTacoPrice;
-                        }
-                        else if(selected == 'large'){
-                          price = largeTacoPrice;
-                        }
-                      });
+                     setState(() {
+                       if(selected == 'Small'){
+                         price = smallPizzaPrice;
+                       }
+                       else if(selected == 'Medium'){
+                         price = mediuamPizzaPrice;
+                       }
+                       else if(selected == 'large'){
+                         price = largePizzaPrice;
+                       }
+                     });
 
                     },
                   )
@@ -384,7 +381,7 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                   ),
                   SizedBox(
-                    width: 220,
+                    width: 226,
                   ),
                   Text(
                     '${price}\$',
@@ -405,7 +402,7 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                   ),
                   SizedBox(
-                    width: 235,
+                    width: 240,
                   ),
                   Text(
                     '${price * quantity}\$',
@@ -414,7 +411,7 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
                 ],
               ),
               SizedBox(
-                height: 90,
+                height: 110,
               ),
               Row(
                 children: [
@@ -425,7 +422,7 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
                     height: 50,
                     width: 390,
                     decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     child: ElevatedButton(
                       child: Row(
                         children: [
@@ -446,7 +443,6 @@ class _offerBeefPastaState extends State<offerBeefPasta> {
                             MaterialPageRoute(
                                 builder: (context) =>
                                     homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
-
                       },
                       style: ElevatedButton.styleFrom(
                           primary: Colors.deepOrangeAccent),

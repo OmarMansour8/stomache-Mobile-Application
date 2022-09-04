@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stomache/ChocolateLavaCake.dart';
+import 'package:stomache/ChocolateCake.dart';
 import 'package:stomache/Fire_Burger.dart';
 import 'package:stomache/Ground_Beef_Pasta.dart';
 import 'package:stomache/Healthy_Taco_Salad.dart';
@@ -16,11 +16,8 @@ import 'package:stomache/burgercategory.dart';
 import 'package:stomache/map.dart';
 import 'package:stomache/offers.dart';
 import 'package:stomache/start.dart';
-//import 'package:webview_flutter/webview_flutter.dart';
-import 'mainMenu.dart';
 import 'breakfast.dart';
-import 'pizza_add_to_cart.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'CheesyPizza.dart';
 
 // void main() {
 //   runApp(homePage());

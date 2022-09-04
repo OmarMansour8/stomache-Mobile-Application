@@ -1,15 +1,10 @@
-import 'dart:math';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stomache/mainMenu.dart';
 import 'package:stomache/order.dart';
 
-// void main() {
-//   runApp(JucyBurger());
-// }
 
 class JucyBurger extends StatefulWidget {
-
   String Email = '';
   String Password = '';
   String fullName = '';
@@ -18,19 +13,29 @@ class JucyBurger extends StatefulWidget {
   String dateOfBirth = '';
   List<Widget> cart = [];
   double totalAmount = 0;
-  List<String> orders=[];
+  List<String> orders = [];
   JucyBurger(
       {required this.Email,
-        required this.Password,
-        required this.fullName,
-        required this.mobileNumber,
-        required this.gender,
-        required this.dateOfBirth,
-        required this.cart
-        ,required this.totalAmount,required this.orders});
+      required this.Password,
+      required this.fullName,
+      required this.mobileNumber,
+      required this.gender,
+      required this.dateOfBirth,
+      required this.cart,
+      required this.totalAmount,
+      required this.orders});
 
   @override
-  State<JucyBurger> createState() => _JucyBurgerState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
+  State<JucyBurger> createState() => _JucyBurgerState(
+      Email: Email,
+      Password: Password,
+      fullName: fullName,
+      mobileNumber: mobileNumber,
+      gender: gender,
+      dateOfBirth: dateOfBirth,
+      cart: cart,
+      totalAmount: totalAmount,
+      orders: orders);
 }
 
 class _JucyBurgerState extends State<JucyBurger> {
@@ -38,13 +43,13 @@ class _JucyBurgerState extends State<JucyBurger> {
   IconData x = (Icons.favorite_outline);
   Color y = Colors.black;
   int quantity = 1;
-  double price = 0;
+  double price = 45;
   double smallPrice = 45.00;
   double mediumPrice = 65.00;
   double largePrice = 90.00;
-  String selectedSize = '';
+  String selectedSize = 'Small';
   int favourite = 0;
-  String name ='Juicy Burger';
+  String name = 'Juicy Burger';
   String image = "images/image4.jpeg";
   String Email = '';
   String Password = '';
@@ -54,27 +59,28 @@ class _JucyBurgerState extends State<JucyBurger> {
   String dateOfBirth = '';
   List<Widget> cart = [];
   double totalAmount = 0;
-  List<String> orders=[];
+  List<String> orders = [];
 
   _JucyBurgerState(
       {required this.Email,
-        required this.Password,
-        required this.fullName,
-        required this.mobileNumber,
-        required this.gender,
-        required this.dateOfBirth,
-        required this.cart,required this.totalAmount,required this.orders});
-  ordered(List<Widget> cart){
-    cart.add(
-    Row(
+      required this.Password,
+      required this.fullName,
+      required this.mobileNumber,
+      required this.gender,
+      required this.dateOfBirth,
+      required this.cart,
+      required this.totalAmount,
+      required this.orders});
+  ordered(List<Widget> cart) {
+    cart.add(Row(
       children: <Widget>[
         Container(
           width: 385,
           height: 150,
           padding: EdgeInsets.only(top: 10),
           child: Card(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             elevation: 10,
             color: Colors.white,
             child: Row(children: <Widget>[
@@ -87,8 +93,7 @@ class _JucyBurgerState extends State<JucyBurger> {
                         Row(
                           children: <Widget>[
                             Container(
-                              padding: EdgeInsets.only(
-                                  top: 10, left: 15),
+                              padding: EdgeInsets.only(top: 10, left: 15),
                               child: Text("${name}",
                                   style: TextStyle(
                                       fontSize: 20,
@@ -102,12 +107,10 @@ class _JucyBurgerState extends State<JucyBurger> {
                         Row(
                           children: [
                             Container(
-                              padding: EdgeInsets.only(
-                                  top: 10, left: 30),
+                              padding: EdgeInsets.only(top: 10, left: 30),
                               child: Text("Quantity: ${quantity}",
                                   style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black54)),
+                                      fontSize: 16, color: Colors.black54)),
                             ),
                           ],
                         ),
@@ -117,12 +120,10 @@ class _JucyBurgerState extends State<JucyBurger> {
                         Row(
                           children: [
                             Container(
-                              padding: EdgeInsets.only(
-                                  top: 10, left: 30),
+                              padding: EdgeInsets.only(top: 10, left: 30),
                               child: Text("Amount: ${price * quantity}\$",
                                   style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black54)),
+                                      fontSize: 16, color: Colors.black54)),
                             ),
                           ],
                         ),
@@ -157,11 +158,10 @@ class _JucyBurgerState extends State<JucyBurger> {
         ),
       ],
     ));
-    totalAmount+=(price*quantity);
-    order order1 = new order(name,quantity,(price*quantity),fullName,mobileNumber);
+    totalAmount += (price * quantity);
     orders.add('$name X $quantity');
-
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -212,8 +212,7 @@ class _JucyBurgerState extends State<JucyBurger> {
                             favourite++;
                           }
                         });
-
-                       },
+                      },
                       icon: Icon(
                         x,
                         size: 30,
@@ -228,15 +227,15 @@ class _JucyBurgerState extends State<JucyBurger> {
               ),
               Center(
                   child: Container(
-                    width: 200,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("images/image4.jpeg"),
-                          fit: BoxFit.cover,
-                        ),
-                        borderRadius: BorderRadius.circular(20)),
-                    height: 200,
-                  )),
+                width: 200,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("images/image4.jpeg"),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(20)),
+                height: 200,
+              )),
               SizedBox(
                 height: 50,
               ),
@@ -249,9 +248,7 @@ class _JucyBurgerState extends State<JucyBurger> {
                     'Juicy Burger',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
-                    width: 245
-                  ),
+                  SizedBox(width: 245),
                   Text('$price\$',
                       style: TextStyle(
                           fontSize: 16,
@@ -269,11 +266,24 @@ class _JucyBurgerState extends State<JucyBurger> {
                   ),
                   Icon(
                     Icons.star_border_sharp,
-                    size: 10,color: Colors.deepOrangeAccent,
+                    size: 10,
+                    color: Colors.deepOrangeAccent,
                   ),
-                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
-                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
-                  Icon(Icons.star_border_sharp, size: 10,color: Colors.deepOrangeAccent,),
+                  Icon(
+                    Icons.star_border_sharp,
+                    size: 10,
+                    color: Colors.deepOrangeAccent,
+                  ),
+                  Icon(
+                    Icons.star_border_sharp,
+                    size: 10,
+                    color: Colors.deepOrangeAccent,
+                  ),
+                  Icon(
+                    Icons.star_border_sharp,
+                    size: 10,
+                    color: Colors.deepOrangeAccent,
+                  ),
                   Icon(Icons.star_border_sharp, size: 10),
                   SizedBox(
                     width: 3,
@@ -336,21 +346,19 @@ class _JucyBurgerState extends State<JucyBurger> {
                     orientation: GroupedButtonsOrientation.HORIZONTAL,
                     labelStyle: TextStyle(fontSize: 12),
                     activeColor: Colors.deepOrangeAccent,
-                    onSelected: (String selected){
-                      selectedSize=selected;
+                    picked: selectedSize,
+                    onSelected: (String selected) {
+                      selectedSize = selected;
 
                       setState(() {
-                        if(selected == 'Small'){
+                        if (selected == 'Small') {
                           price = smallPrice;
-                        }
-                        else if(selected == 'Medium'){
+                        } else if (selected == 'Medium') {
                           price = mediumPrice;
-                        }
-                        else if(selected == 'large'){
+                        } else if (selected == 'large') {
                           price = largePrice;
                         }
                       });
-
                     },
                   )
                 ],
@@ -430,7 +438,7 @@ class _JucyBurgerState extends State<JucyBurger> {
                     height: 50,
                     width: 370,
                     decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     child: ElevatedButton(
                       child: Row(
                         children: [
@@ -445,14 +453,21 @@ class _JucyBurgerState extends State<JucyBurger> {
                         ],
                       ),
                       onPressed: () {
-                          ordered(cart);
-                          print(orders.length);
+                        ordered(cart);
+                        print(orders.length);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    homePage(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders)));
-
+                                builder: (context) => homePage(
+                                    Email: Email,
+                                    Password: Password,
+                                    fullName: fullName,
+                                    mobileNumber: mobileNumber,
+                                    gender: gender,
+                                    dateOfBirth: dateOfBirth,
+                                    cart: cart,
+                                    totalAmount: totalAmount,
+                                    orders: orders)));
                       },
                       style: ElevatedButton.styleFrom(
                           primary: Colors.deepOrangeAccent),

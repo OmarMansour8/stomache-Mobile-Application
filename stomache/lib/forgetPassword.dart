@@ -5,7 +5,6 @@ class Forgot_Password extends StatefulWidget {
   State<Forgot_Password> createState() => _Forgot_PasswordState();
 }
 class _Forgot_PasswordState extends State<Forgot_Password> {
-  //final Widget child;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery

@@ -10,10 +10,7 @@ import 'package:stomache/offerChocolateLavaCake.dart';
 import 'package:stomache/offerFruityPaneCake.dart';
 import 'package:stomache/offerVeganbreakfast.dart';
 import 'package:stomache/start.dart';
-//import 'package:webview_flutter/webview_flutter.dart';
 import 'breakfast.dart';
-import 'burgercategory.dart';
-
 
 
 

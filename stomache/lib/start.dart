@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signUp.dart';
 import 'singIn.dart';
-import 'forgetPassword.dart';
 
 
 class start extends StatelessWidget {

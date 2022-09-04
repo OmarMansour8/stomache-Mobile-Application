@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,12 +15,13 @@ class _Sign_UpState extends State<Sign_Up> {
   String fullName = '';
   String mobileNumber = '';
   String gender='';
-  String dateOfBirth = '';double totalAmount = 0;
+  String dateOfBirth = '';
+  double totalAmount = 0;
   List<String> orders=[];
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   List<Widget> cart=[];
-  //final Widget child;
+  //
   DateTime date1=DateTime.now();
   Future<Null>selectDate(BuildContext context) async{
     final DateTime? picked=await showDatePicker(

@@ -13,8 +13,6 @@ class FrenchToast extends StatefulWidget {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
-  String name ='Juicy Burger';
-  String image = "images/image4.jpeg";
   double totalAmount = 0;
   List<String> orders=[];
 
@@ -35,11 +33,11 @@ class _FrenchToastState extends State<FrenchToast> {
   IconData x = (Icons.favorite_outline);
   Color y = Colors.black;
   int quantity = 1;
-  double price = 0;
+  double price = 20;
   double smallTacoPrice = 20.00;
   double mediumTacoPrice = 25.00;
   double largeTacoPrice = 30.00;
-  String selectedSize = '';
+  String selectedSize = 'Small';
   int favourite = 0;
   String Email = '';
   String Password = '';
@@ -164,12 +162,6 @@ class _FrenchToastState extends State<FrenchToast> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('details', style: TextStyle(color: Colors.black),),
-        //   backgroundColor: Colors.white,
-        //   centerTitle: true
-        //   ,
-        // ),
         body: SafeArea(
           child: Column(
             children: <Widget>[
@@ -334,6 +326,7 @@ class _FrenchToastState extends State<FrenchToast> {
                     orientation: GroupedButtonsOrientation.HORIZONTAL,
                     labelStyle: TextStyle(fontSize: 12),
                     activeColor: Colors.deepOrangeAccent,
+                    picked: selectedSize,
                     onSelected: (String selected){
                       selectedSize=selected;
 

@@ -26,14 +26,6 @@ class CreamyBegal extends StatefulWidget {
         required this.cart
       ,required this.totalAmount,required this.orders});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   @override
   State<CreamyBegal> createState() => _CreamyBegalState(Email: Email, Password: Password, fullName: fullName, mobileNumber: mobileNumber, gender: gender, dateOfBirth: dateOfBirth, cart: cart, totalAmount: totalAmount, orders: orders);
@@ -44,7 +36,7 @@ class _CreamyBegalState extends State<CreamyBegal> {
   IconData x = (Icons.favorite_outline);
   Color y = Colors.black;
   int quantity = 1;
-  double price = 0;
+  double price = 20;
   double smallTacoPrice = 20.00;
   double mediumTacoPrice = 35.00;
   double largeTacoPrice = 45.00;
@@ -339,6 +331,7 @@ class _CreamyBegalState extends State<CreamyBegal> {
                     orientation: GroupedButtonsOrientation.HORIZONTAL,
                     labelStyle: TextStyle(fontSize: 12),
                     activeColor: Colors.deepOrangeAccent,
+                    picked: selectedSize,
                     onSelected: (String selected){
                       selectedSize=selected;
 

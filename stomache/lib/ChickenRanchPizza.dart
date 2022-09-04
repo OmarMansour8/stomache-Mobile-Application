@@ -13,8 +13,6 @@ class ChickenRanchPizza extends StatefulWidget {
   String gender = '';
   String dateOfBirth = '';
   List<Widget> cart = [];
-  String name ='Juicy Burger';
-  String image = "images/image4.jpeg";
   double totalAmount = 0;
   List<String> orders=[];
 
@@ -36,11 +34,11 @@ class _ChickenRanchPizzaState extends State<ChickenRanchPizza> {
   IconData x = (Icons.favorite_outline);
   Color y = Colors.black;
   int quantity = 1;
-  double price = 0;
+  double price = 80;
   double smallPrice = 80.00;
   double mediumPrice = 100.00;
   double largePrice = 160.00;
-  String selectedSize = '';
+  String selectedSize = 'Small';
   int favourite = 0;
   double totalAmount = 0;
   String Email = '';
@@ -333,6 +331,7 @@ class _ChickenRanchPizzaState extends State<ChickenRanchPizza> {
                     orientation: GroupedButtonsOrientation.HORIZONTAL,
                     labelStyle: TextStyle(fontSize: 12),
                     activeColor: Colors.deepOrangeAccent,
+                    picked: selectedSize,
                     onSelected: (String selected){
                       selectedSize=selected;
 
