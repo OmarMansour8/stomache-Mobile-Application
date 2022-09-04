@@ -140,7 +140,7 @@ class _Sign_InState extends State<Sign_In> {
                         width: size.width * 0.9,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(29),
-                          child: ElevatedButton(
+                          child: SizedBox(height: 60, child:  ElevatedButton(
                             // padding: EdgeInsets.symmetric(vertical: 18,horizontal: 38),
                             // color: Colors.deepOrange,
                             onPressed: () async {
@@ -154,7 +154,7 @@ class _Sign_InState extends State<Sign_In> {
                                        title: Text('error'),
                                        content: Text(err.message),
                                        actions: [
-                                         FlatButton(onPressed: (){
+                                         ElevatedButton(onPressed: (){
                                            Navigator.pop(context);
                                          }, child: Text('Ok'))
                                        ],
@@ -189,7 +189,7 @@ class _Sign_InState extends State<Sign_In> {
                             style: ElevatedButton.styleFrom(
                               primary: Colors.deepOrangeAccent,
                             ),
-                          ),
+                          )),
                         )),
                     Row(
                       children: <Widget>[

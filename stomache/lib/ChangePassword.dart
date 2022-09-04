@@ -198,7 +198,7 @@ final newPasswordContoller =TextEditingController();
 
                     //save button
 
-                      ElevatedButton(onPressed:buttonEnabled ? (){
+                SizedBox(height: 60, child: ElevatedButton(onPressed:buttonEnabled ? (){
 
 
                         updateData(newPassword);
@@ -207,7 +207,7 @@ final newPasswordContoller =TextEditingController();
 
 
                       }:null, child: Text('Save'),style: ElevatedButton.styleFrom(primary: Colors.deepOrange),),
-                    ]
+                )]
                 )
 
             )

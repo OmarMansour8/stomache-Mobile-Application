@@ -30,21 +30,19 @@ class start extends StatelessWidget {
                         width: size.width*0.8,
                         child:ClipRRect(
                           borderRadius: BorderRadius.circular(29),
-                          child: FlatButton(
-                              padding: EdgeInsets.symmetric(vertical: 20,horizontal: 40),
-                              color: Colors.deepOrange,
+                          child:SizedBox(height: 60, child:  ElevatedButton(
+                             style: ElevatedButton.styleFrom(primary: Colors.deepOrangeAccent),
                               onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>Sign_In()));}, child:Text('Sign In',style: TextStyle(color: Colors.white,fontSize: 19),)),)),
-                    Container(
+    ),Container(
                         margin: EdgeInsets.symmetric(vertical: 20),
                         width: size.width*0.8,
                         child:ClipRRect(
                           borderRadius: BorderRadius.circular(29),
-                          child: FlatButton(
-                              padding: EdgeInsets.symmetric(vertical: 20,horizontal: 40),
-                              color: Colors.orange[100],
+                          child:SizedBox(height: 60, child: ElevatedButton(
+                             style: ElevatedButton.styleFrom(primary: Colors.orange[200],),
                               onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>Sign_Up()));}, child:Text('Sign Up',style: TextStyle(color: Colors.black,fontSize: 19),)),)),
 
-                  ]
+                    )]
               )
             ]
         )
