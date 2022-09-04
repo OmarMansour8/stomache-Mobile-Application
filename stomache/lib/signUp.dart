@@ -43,6 +43,7 @@ class _Sign_UpState extends State<Sign_Up> {
     dateOfBirth='${date1.year} - ${date1.month} - ${date1.day}'.toString();
     Size size = MediaQuery.of(context).size;
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
             body:
             Padding(

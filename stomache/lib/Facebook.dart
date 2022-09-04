@@ -9,6 +9,7 @@ class _FacebookState extends State<Facebook> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(appBar: AppBar(
         backgroundColor:Colors.lightBlueAccent,
         title:Text('            Facebook',style:TextStyle(fontSize: 25 ) ),

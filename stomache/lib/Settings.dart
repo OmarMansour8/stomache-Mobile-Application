@@ -73,6 +73,7 @@ class _settingState extends State<setting> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
             body: SafeArea(
                 child: ListView(padding: EdgeInsets.all(20), children: [

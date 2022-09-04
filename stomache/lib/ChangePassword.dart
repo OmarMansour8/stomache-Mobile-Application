@@ -75,6 +75,7 @@ final newPasswordContoller =TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
             body: Padding(
                 padding: EdgeInsets.all(20),

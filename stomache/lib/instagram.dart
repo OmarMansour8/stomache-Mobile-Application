@@ -9,8 +9,9 @@ class _InstagramState extends State<Instagram> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(appBar: AppBar(
-        backgroundColor:Colors.redAccent,
+        backgroundColor:Colors.pinkAccent,
         title:Text('            Instagram',style:TextStyle(fontSize: 25 ) ),
         leading:IconButton(onPressed: (){Navigator.pop(context);}, icon:Icon(Icons.arrow_back_ios)),
       ),

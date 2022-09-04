@@ -11,6 +11,7 @@ class _TwitterState extends State<Twitter> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.lightBlueAccent,

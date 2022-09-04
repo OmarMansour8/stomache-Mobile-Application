@@ -74,6 +74,7 @@ class _homePageState extends State<homePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+    debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           shape: RoundedRectangleBorder(

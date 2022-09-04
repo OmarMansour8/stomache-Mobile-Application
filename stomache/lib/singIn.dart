@@ -50,6 +50,7 @@ class _Sign_InState extends State<Sign_In> {
     Size size = MediaQuery.of(context).size;
 
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
             body: Padding(
                 padding: EdgeInsets.all(20),

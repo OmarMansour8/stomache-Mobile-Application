@@ -12,6 +12,7 @@ class _About_appState extends State<About_app> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
             body:SafeArea(
                 child:ListView(

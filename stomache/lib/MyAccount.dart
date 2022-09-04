@@ -79,6 +79,7 @@ class _myaccountState extends State<myaccount> {
   Widget build(BuildContext context) {
     getData();
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(),
       home: Scaffold(

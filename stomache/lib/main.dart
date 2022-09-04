@@ -15,7 +15,7 @@ void main() async{
       options: DefaultFirebaseOptions.currentPlatform
   );
 
-  runApp(MaterialApp(
+  runApp(MaterialApp( debugShowCheckedModeBanner: false,
       home:MyApp()));
 }
 
@@ -32,6 +32,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
 
